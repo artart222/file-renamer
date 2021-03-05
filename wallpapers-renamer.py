@@ -35,9 +35,12 @@ class Renamer:
     def rename(self):
         for file in os.listdir(self.wallpaper_dir):
             current_file_name = self.wallpaper_dir + "/" + file
-            new_file_name = self.wallpaper_dir + "/" + "0" * (self.int_len(self.max_files()) - self.int_len(self.cnt_files())) + str(self.cnt)
+            file_extension = current_file_name.split(".")[-1]
+            new_file_name = self.wallpaper_dir + "/" + "0" * (self.int_len(self.max_files()) - self.int_len(self.cnt_files())) + str(self.cnt) + "." + file_extension
 
             shutil.move(current_file_name, new_file_name)
+            print()
+
             self.cnt += 1
 
 
