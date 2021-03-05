@@ -1,2 +1,2 @@
-# wallpaperes-renamer
-A command line tool that renames wallpaper directory files for you
+# file-renamer
+A command line tool for renaming files in a directory
