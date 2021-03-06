@@ -44,8 +44,8 @@ class Renamer:
             self.cnt += 1
 
 
-# assign wallpapeer_dir value from command line argument
-wallpaper_dir = sys.argv[1]
+# assign files_dir value from command line argument
+files_dir = sys.argv[1]
 
-renamer = Renamer(wallpaper_dir)
+renamer = Renamer(files_dir)
 renamer.rename()
