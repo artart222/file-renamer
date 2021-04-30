@@ -32,14 +32,25 @@ class Renamer:
 
         return 10 ** self.int_len(self.cnt_files())
 
+
     def rename(self):
-        for file in os.listdir(self.wallpaper_dir):
+        for file in sorted(os.listdir(self.wallpaper_dir)):
             current_file_name = self.wallpaper_dir + "/" + file
             file_extension = current_file_name.split(".")[-1]
-            new_file_name = self.wallpaper_dir + "/" + "0" * (self.int_len(self.max_files()) - self.int_len(self.cnt_files())) + str(self.cnt) + "." + file_extension
+            new_file_name = "0" * (self.int_len(self.cnt_files()) - self.int_len(self.cnt)) + str(self.cnt)
 
-            shutil.move(current_file_name, new_file_name)
-            print()
+            files = [os.path.splitext(filename)[0] for filename in os.listdir(self.wallpaper_dir)]
+            files = sorted(files)
+
+            if new_file_name in files:
+                self.cnt += 1
+                continue
+            else:
+                if os.path.isdir(current_file_name):
+                    shutil.move(current_file_name, self.wallpaper_dir + "/" + new_file_name)
+                else:
+                    shutil.move(current_file_name, self.wallpaper_dir + "/" + new_file_name + "." + file_extension)
+
 
             self.cnt += 1
 
